@@ -25,7 +25,7 @@ class PassportCrudController extends AbstractCrudController
             TextField::new('passportSeries', 'Серия паспорта')->setRequired(true)->setMaxLength(4),
             TextField::new('passportNumber', 'Номер паспорта')->setRequired(true)->setMaxLength(6),
             TextField::new('passportIssuedBy', 'Выдан кем')->setRequired(true)->setMaxLength(255)->hideOnIndex(),
-            BooleanField::new('sex', 'Пол (мужской/женский)')->setRequired(true),
+            BooleanField::new('sex', 'Пол (мужской/женский)'),
         ];
     }
 }
