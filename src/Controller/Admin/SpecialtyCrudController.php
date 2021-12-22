@@ -22,7 +22,6 @@ class SpecialtyCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('specialtyName', 'Название')->setRequired(true),
             TimeField::new('specialtyDuration', 'Время приема')->setRequired(true),
-            AssociationField::new('doctors', 'Врачи'),
         ];
     }
 }
