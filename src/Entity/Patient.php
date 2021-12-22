@@ -21,7 +21,6 @@ class Patient
 
     /**
      * @ORM\OneToOne(targetEntity=Account::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
      */
     private $account;
 
@@ -36,12 +35,12 @@ class Patient
     private $patientJms;
 
     /**
-     * @ORM\OneToOne(targetEntity=PatientCard::class, mappedBy="patientId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=PatientCard::class, cascade={"persist", "remove"})
      */
     private $patientCard;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="patientId")
+     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="patient")
      */
     private $tickets;
 
@@ -60,7 +59,7 @@ class Patient
         return $this->account;
     }
 
-    public function setAccount(Account $account): self
+    public function setAccount(?Account $account): self
     {
         $this->account = $account;
 
@@ -96,13 +95,8 @@ class Patient
         return $this->patientCard;
     }
 
-    public function setPatientCard(PatientCard $patientCard): self
+    public function setPatientCard(?PatientCard $patientCard): self
     {
-        // set the owning side of the relation if necessary
-        if ($patientCard->getPatient() !== $this) {
-            $patientCard->setPatient($this);
-        }
-
         $this->patientCard = $patientCard;
 
         return $this;
@@ -140,6 +134,6 @@ class Patient
 
     public function __toString()
     {
-        return $this->patientSnills . " | " . $this->patientJms;
+        return $this->patientSnills . " " . $this->patientJms;
     }
 }
