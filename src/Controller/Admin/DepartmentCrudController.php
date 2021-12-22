@@ -24,7 +24,7 @@ class DepartmentCrudController extends AbstractCrudController
             TextField::new('departmentDescription', 'Описание')->setRequired(true)->setMaxLength(2000)->hideOnIndex(),
             DateField::new('departmentDateCreate', 'Дата формирования отделения')->setRequired(true),
             AssociationField::new('referral', 'Направления'),
-            AssociationField::new('chiefDoctor', 'Главврач')->setRequired(true),
+            AssociationField::new('chiefDoctor', 'Главврач')->setRequired(false),
             AssociationField::new('doctors', 'Врачи'),
         ];
     }
