@@ -22,7 +22,6 @@ class PositionCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('positionName', 'Название должности')->setRequired(true)->setMaxLength(50),
             NumberField::new('positionSalary', 'ЗП по должности')->setRequired(true),
-            AssociationField::new('doctors', 'Врачи'),
         ];
     }
 }
