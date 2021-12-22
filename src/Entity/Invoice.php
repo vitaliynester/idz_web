@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\Invoice1Repository;
+use App\Repository\InvoiceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
