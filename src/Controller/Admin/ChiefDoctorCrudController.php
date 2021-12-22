@@ -20,7 +20,7 @@ class ChiefDoctorCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             DateField::new('dateInauguration', 'Дата вступления в должность')->setRequired(true),
-            DateField::new('dateDismissal', 'Дата выхода из должности')->setRequired(true),
+            DateField::new('dateDismissal', 'Дата выхода из должности')->setRequired(false),
             AssociationField::new('department', 'Отделение')->setRequired(true),
             AssociationField::new('account', 'Аккаунт')->setRequired(true),
         ];
