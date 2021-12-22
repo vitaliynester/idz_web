@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\InvoiceRepository;
+use App\Repository\Invoice1Repository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,7 +28,7 @@ class Invoice
     private $invoicePrice;
 
     /**
-     * @ORM\OneToOne(targetEntity=Ticket::class, inversedBy="invoice", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Ticket::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ticket;
@@ -38,9 +38,9 @@ class Invoice
         return $this->id;
     }
 
-    public function getInvoiceStatus(): bool
+    public function getInvoiceStatus(): ?bool
     {
-        return $this->invoiceStatus ?? false;
+        return $this->invoiceStatus;
     }
 
     public function setInvoiceStatus(bool $invoiceStatus): self
@@ -72,10 +72,5 @@ class Invoice
         $this->ticket = $ticket;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->invoicePrice . " за " . $this->ticket;
     }
 }

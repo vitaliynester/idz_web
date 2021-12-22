@@ -34,12 +34,6 @@ class Ticket
     private $ticketStatus;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="tickets")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $patient;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Doctor::class, inversedBy="tickets")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -49,6 +43,12 @@ class Ticket
      * @ORM\OneToOne(targetEntity=Invoice::class, mappedBy="ticketId", cascade={"persist", "remove"})
      */
     private $invoice;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $patient;
 
     public function getId(): ?int
     {

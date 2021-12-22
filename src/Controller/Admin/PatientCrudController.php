@@ -23,7 +23,6 @@ class PatientCrudController extends AbstractCrudController
             TextField::new('patientSnills', 'СНИЛС')->setRequired(true)->setMaxLength(14),
             TextField::new('patientJms', 'Полис ОМС')->setRequired(true)->setMaxLength(16),
             AssociationField::new('patientCard', 'Карта пациента')->setRequired(false)->hideWhenCreating(),
-            AssociationField::new('tickets', 'Записи на прием')->hideOnDetail()->hideWhenCreating(),
         ];
     }
 }
