@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
 class InvoiceCrudController extends AbstractCrudController
 {
@@ -22,7 +23,7 @@ class InvoiceCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             BooleanField::new('invoiceStatus', 'Оплачен ли счет'),
-            MoneyField::new('invoicePrice', 'Стоимость услуги')->setRequired(true),
+            NumberField::new('invoicePrice', 'Стоимость услуги')->setRequired(true),
             AssociationField::new('ticket', 'Талон на прием')->setRequired(true),
         ];
     }
