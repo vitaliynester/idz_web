@@ -21,7 +21,6 @@ class PatientCardCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             AssociationField::new('patient', 'Пациент')->setRequired(true),
             DateField::new('patientCardCreateDate', 'Дата создания карточки')->hideOnForm(),
-            AssociationField::new('cardReceptions', 'Карточки приема'),
         ];
     }
 }
