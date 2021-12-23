@@ -95,6 +95,6 @@ class ChiefDoctor
 
     public function __toString()
     {
-        return $this->account . " " . $this->dateInauguration . " " . $this->department;
+        return $this->account . " " . $this->dateInauguration->format('d/m/Y') . " " . $this->department;
     }
 }
