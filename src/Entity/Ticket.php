@@ -50,6 +50,11 @@ class Ticket
      */
     private $patient;
 
+    public function __construct()
+    {
+        $this->ticketPayable = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

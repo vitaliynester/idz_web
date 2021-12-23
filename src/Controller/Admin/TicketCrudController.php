@@ -20,7 +20,7 @@ class TicketCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            BooleanField::new('ticketPayable', 'Платный прием'),
+            BooleanField::new('ticketPayable', 'Платный прием')->setRequired(false),
             DateTimeField::new('ticketCreateTime', 'Дата приема')->setRequired(true),
             BooleanField::new('ticketStatus', 'Состоялся ли прием'),
             AssociationField::new('patient', 'Пациент')->setRequired(true),
