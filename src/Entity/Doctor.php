@@ -53,14 +53,14 @@ class Doctor
     private $timetables;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="doctorId")
-     */
-    private $tickets;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="doctors")
      */
     private $department;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="doctor")
+     */
+    private $tickets;
 
     public function __construct()
     {
