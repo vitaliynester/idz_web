@@ -34,18 +34,18 @@ class Ticket
     private $ticketStatus;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Doctor::class, inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity=Doctor::class, inversedBy="ticket1s")
      * @ORM\JoinColumn(nullable=false)
      */
     private $doctor;
 
     /**
-     * @ORM\OneToOne(targetEntity=Invoice::class, mappedBy="ticketId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Invoice::class, cascade={"persist", "remove"})
      */
     private $invoice;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="ticket1s")
      * @ORM\JoinColumn(nullable=false)
      */
     private $patient;
@@ -61,9 +61,9 @@ class Ticket
         return $this->id;
     }
 
-    public function getTicketPayable(): bool
+    public function getTicketPayable(): ?bool
     {
-        return $this->ticketPayable ?? false;
+        return $this->ticketPayable;
     }
 
     public function setTicketPayable(bool $ticketPayable): self
@@ -85,26 +85,14 @@ class Ticket
         return $this;
     }
 
-    public function getTicketStatus(): bool
+    public function getTicketStatus(): ?bool
     {
-        return $this->ticketStatus ?? false;
+        return $this->ticketStatus;
     }
 
     public function setTicketStatus(bool $ticketStatus): self
     {
         $this->ticketStatus = $ticketStatus;
-
-        return $this;
-    }
-
-    public function getPatient(): ?Patient
-    {
-        return $this->patient;
-    }
-
-    public function setPatient(?Patient $patient): self
-    {
-        $this->patient = $patient;
 
         return $this;
     }
@@ -126,14 +114,21 @@ class Ticket
         return $this->invoice;
     }
 
-    public function setInvoice(Invoice $invoice): self
+    public function setInvoice(?Invoice $invoice): self
     {
-        // set the owning side of the relation if necessary
-        if ($invoice->getTicket() !== $this) {
-            $invoice->setTicket($this);
-        }
-
         $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): self
+    {
+        $this->patient = $patient;
 
         return $this;
     }
