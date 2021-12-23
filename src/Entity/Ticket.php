@@ -53,6 +53,7 @@ class Ticket
     public function __construct()
     {
         $this->ticketPayable = false;
+        $this->ticketStatus = false;
     }
 
     public function getId(): ?int
