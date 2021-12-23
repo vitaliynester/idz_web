@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\DepartmentRepository;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,12 +40,12 @@ class Department
     private $referral;
 
     /**
-     * @ORM\OneToOne(targetEntity=ChiefDoctor::class, mappedBy="departmentId", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=ChiefDoctor::class, cascade={"persist", "remove"})
      */
     private $chiefDoctor;
 
     /**
-     * @ORM\OneToMany(targetEntity=Doctor::class, mappedBy="departmentId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Doctor::class, mappedBy="department")
      */
     private $doctors;
 
@@ -73,12 +72,12 @@ class Department
         return $this;
     }
 
-    public function getDepartmentDateCreate(): ?DateTimeInterface
+    public function getDepartmentDateCreate(): ?\DateTimeInterface
     {
         return $this->departmentDateCreate;
     }
 
-    public function setDepartmentDateCreate(DateTimeInterface $departmentDateCreate): self
+    public function setDepartmentDateCreate(\DateTimeInterface $departmentDateCreate): self
     {
         $this->departmentDateCreate = $departmentDateCreate;
 
@@ -105,18 +104,18 @@ class Department
         return $this->referral;
     }
 
-    public function addReferralId(Referral $referralId): self
+    public function addReferral(Referral $referral): self
     {
-        if (!$this->referral->contains($referralId)) {
-            $this->referral[] = $referralId;
+        if (!$this->referral->contains($referral)) {
+            $this->referral[] = $referral;
         }
 
         return $this;
     }
 
-    public function removeReferralId(Referral $referralId): self
+    public function removeReferral(Referral $referral): self
     {
-        $this->referral->removeElement($referralId);
+        $this->referral->removeElement($referral);
 
         return $this;
     }
@@ -126,13 +125,8 @@ class Department
         return $this->chiefDoctor;
     }
 
-    public function setChiefDoctor(ChiefDoctor $chiefDoctor): self
+    public function setChiefDoctor(?ChiefDoctor $chiefDoctor): self
     {
-        // set the owning side of the relation if necessary
-        if ($chiefDoctor->getDepartment() !== $this) {
-            $chiefDoctor->setDepartment($this);
-        }
-
         $this->chiefDoctor = $chiefDoctor;
 
         return $this;
@@ -166,10 +160,5 @@ class Department
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->departmentName;
     }
 }
