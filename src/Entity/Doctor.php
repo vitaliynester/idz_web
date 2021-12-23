@@ -36,12 +36,6 @@ class Doctor
     private $account;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="doctors")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $department;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Specialty::class, inversedBy="doctors")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -62,6 +56,11 @@ class Doctor
      * @ORM\OneToMany(targetEntity=Ticket::class, mappedBy="doctorId")
      */
     private $tickets;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Department::class, inversedBy="doctors")
+     */
+    private $department;
 
     public function __construct()
     {

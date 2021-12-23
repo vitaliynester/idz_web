@@ -25,7 +25,7 @@ class Referral
     private $referralName;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Department::class, mappedBy="referralId")
+     * @ORM\ManyToMany(targetEntity=Department::class, mappedBy="referral")
      */
     private $departments;
 
@@ -59,27 +59,27 @@ class Referral
         return $this->departments;
     }
 
-    public function addDepartment(Department $department): self
-    {
-        if (!$this->departments->contains($department)) {
-            $this->departments[] = $department;
-            $department->addReferralId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDepartment(Department $department): self
-    {
-        if ($this->departments->removeElement($department)) {
-            $department->removeReferralId($this);
-        }
-
-        return $this;
-    }
-
     public function __toString()
     {
         return $this->referralName;
+    }
+
+    public function addDepartment1(Department $department1): self
+    {
+        if (!$this->departments->contains($department1)) {
+            $this->departments[] = $department1;
+            $department1->addReferral($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDepartment1(Department $department1): self
+    {
+        if ($this->departments->removeElement($department1)) {
+            $department1->removeReferral($this);
+        }
+
+        return $this;
     }
 }
