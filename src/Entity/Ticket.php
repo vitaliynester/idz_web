@@ -135,6 +135,6 @@ class Ticket
 
     public function __toString()
     {
-        return $this->patient . " к врачу " . $this->doctor . ' на ' . $this->ticketCreateTime;
+        return $this->patient . " к врачу " . $this->doctor . ' на ' . $this->ticketCreateTime->format('d/m/Y');
     }
 }
