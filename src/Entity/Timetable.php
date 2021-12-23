@@ -44,6 +44,11 @@ class Timetable
      */
     private $doctor;
 
+    public function __construct()
+    {
+        $this->timetableStatus = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -21,7 +21,7 @@ class TimetableCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            BooleanField::new('timetableStatus', 'Активно ли расписание'),
+            BooleanField::new('timetableStatus', 'Активно ли расписание')->setRequired(false),
             TimeField::new('timetableStartTime', 'Время начала работы')->setRequired(true),
             TimeField::new('timetableEndTime', 'Время завершения работы')->setRequired(true),
             IntegerField::new('timetableWeekDay', 'День недели расписания')->setRequired(true),
