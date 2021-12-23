@@ -26,8 +26,6 @@ class DoctorCrudController extends AbstractCrudController
             AssociationField::new('department', 'Отделение')->setRequired(true),
             AssociationField::new('specialty', 'Специальность')->setRequired(true),
             AssociationField::new('position', 'Должность')->setRequired(true),
-            AssociationField::new('timetables', 'Расписания'),
-            AssociationField::new('tickets', 'Талоны на прием'),
         ];
     }
 }
